@@ -1,0 +1,53 @@
+<=================================play book (myplaybook.yml)
+
+Ansible has default settings
+priority of ansible config file
+
+1. ANSIBLE_CONFIG (enviroment varibale if set)
+2. ansible.cfg (in current directory)
+3. ~/.ansible.cfg (in the home directory)
+4. /etc/ansible/ansible.cfg
+
+
+example ansible.cfg  
+
+------------------------------------------------------------
+[defaults]
+# The [defaults] section specifies general configuration options for Ansible.
+
+host_key_checking = False
+# Disables SSH host key checking. If set to False, Ansible will not verify the SSH key of the remote host,
+# which can prevent connection issues with hosts that are not yet known to the controller.
+
+inventory = ./inventory
+# Specifies the file or directory where Ansible should look for its inventory (list of managed hosts).
+# Here, the inventory is set to be in the current directory and named 'inventory'.
+
+forks = 5
+# Defines the maximum number of parallel processes (or forks) that Ansible will use to execute tasks.
+# In this case, Ansible will use up to 5 parallel processes.
+
+log_path = /var/log/ansible.log
+# Sets the file path where Ansible will write its log output.
+# This is useful for debugging and monitoring Ansible executions.
+
+[privilege_escalation]
+# The [privilege_escalation] section specifies configuration options for privilege escalation.
+
+become = true
+# Enables privilege escalation for tasks that require higher permissions.
+# If set to true, Ansible will attempt to escalate privileges when necessary.
+
+become_method = sudo
+# Specifies the method of privilege escalation to use.
+# In this case, Ansible will use the 'sudo' command to escalate privileges.
+
+become_ask_pass = False
+# Determines whether Ansible should prompt for the privilege escalation password.
+# If set to False, Ansible will not prompt for the password and will assume it can execute sudo without a password.
+
+
+
+--------------------------------------------------------------------
+
+

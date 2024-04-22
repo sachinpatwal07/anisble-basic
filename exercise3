@@ -1,0 +1,43 @@
+<====================================Invertory File with grouping
+
+Note: Host have the greate priority than groups
+
+
+all:
+  hosts:
+    web01:
+      ansible_host: 172.31.90.47
+      
+    web02:
+      ansible_host: 172.31.85.102
+      
+    db01:
+      ansible_host: 172.31.89.152
+      
+  children:
+    webservers:
+      hosts:
+        web01: 
+        web02: 
+    dbservers:
+      hosts:
+        db01: 
+    dc_oregon:
+      children:
+        webservers: 
+        dbservers: 
+      vars:
+        ansible_user: ec2-user
+        ansible_ssh_private_key_file: clientkey.pem  
+
+
+
+
+<==============================Commond========>
+
+ $ ansible all -m ping -i invertory
+ $ ansible db_servers -m ping -i invertory
+ $ ansible dbservers -m ping -i invertory
+ $ ansible dc_oregon -m ping -i invertory
+
+** m is module , ansible has a lots of modules

@@ -1,0 +1,60 @@
+<=================================play book (myplaybook.yml)
+
+Ansible playbook is a YAML file that automates series of tasks on managed hosts.
+
+YAML: Human-readable format.
+Tasks and Modules: Perform actions using pre-written scripts.
+Hosts: Specifies which hosts tasks should run on.
+Plays: Playbooks contain plays with tasks and configurations for hosts.
+Roles: Organize related tasks, variables, and templates for modularity.
+Variables: Store data like settings or paths for flexibility.
+Conditionals: Execute tasks based on conditions.
+Handlers: Triggered by tasks when changes occur, e.g., restart a service.
+Error Handling: Define strategies for handling execution errors.
+Idempotency: Safe to run multiple times without unintended changes.
+
+------------------------------------playbook
+
+- name: Webserver setup
+  hosts: webservers
+  become: yes
+  tasks:
+    - name: Install httpd
+      ansible.builtin.yum:
+        name: httpd
+        state: present
+
+    - name: Start and enable httpd service
+      ansible.builtin.service:
+        name: httpd
+        state: started
+        enabled: yes
+
+- name: DBserver setup
+  hosts: dbservers
+  become: yes
+  tasks:
+    - name: Install mariadb-server
+      ansible.builtin.yum:
+        name: mariadb-server
+        state: present
+
+    - name: Start mariab server
+      ansible.builtin.service:
+       name: mariadb
+       state: started
+       enabled: yes
+
+
+
+------------------------commands----------------------------------------
+
+$ ansbile-playbook myplaybook.yml -i inventory
+
+$ ansbile-playbook myplaybook.yml -i inventory -vvvv (each v represent details of task)
+
+$ ansible-playbook web-db.yml -i invertory -C (for dry run , good practice , but doesnt gaurenty will work in real case )
+
+$ ansible-playbook web-db.yml -i invertory --syntax-check 
+
+

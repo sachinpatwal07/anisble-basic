@@ -1,0 +1,29 @@
+---
+- name: Update web servers
+  hosts: webservers
+  become: yes
+  tasks:
+    - name: Update package lists and upgrade all packages
+      apt:
+        update_cache: yes
+        upgrade: dist
+      register: apt_result
+
+    - name: print result
+      debug:
+       var: apt_result
+
+    - name: Check if reboot is required
+      stat:
+        path: /var/run/reboot-required
+      register: reboot_check
+      when: apt_result.changed
+
+    - name: print result
+      debug:
+       var: reboot_check
+
+    - name: Reboot the system
+      ansible.builtin.reboot:
+        reboot_timeout: 180
+      when: reboot_check.stat is defined and reboot_check.stat.exists

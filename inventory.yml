@@ -1,0 +1,31 @@
+all:
+  hosts:
+    web01:
+      ansible_host: 172.31.87.165
+      ansible_user: ubuntu
+      ansible_private_key_file: clientkey.pem
+    web02:
+      ansible_host: 172.31.94.67
+      ansible_user: ubuntu
+      ansible_private_key_file: clientkey.pem
+    web03:
+      ansible_host: 172.31.95.1
+      ansible_user: ubuntu
+      ansible_private_key_file: clientkey.pem
+    web04:
+      ansible_host: 172.31.80.231
+      ansible_user: ubuntu
+      ansible_private_key_file: client4.pem
+    web05:
+      ansible_host: 172.31.88.82
+      ansible_user: ubuntu
+      ansible_private_key_file: client5.pem
+  children:
+    webservers:
+      hosts:
+        web01: 
+        web02: 
+        web03: 
+        web04: 
+        web05: 
+

@@ -1,0 +1,22 @@
+<=================================ah hod commands
+
+
+use to  automate a single task on one or more managed nodes. they are quick and easy, not reusable. great for tasks you repeat rarely without writing a playbook
+
+Why use ad hoc commands?
+
+Use cases for ad hoc tasks
+Rebooting servers
+Managing files
+Managing packages
+Managing users and groups
+Managing services
+Gathering facts
+Check mode
+Patterns and ad-hoc commands
+
+
+note : Ansible's playbooks and modules are designed to be idempotent, meaning running them multiple times will not change the system state beyond the initial configuration
+ 	
+
+

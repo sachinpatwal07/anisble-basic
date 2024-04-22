@@ -1,0 +1,16 @@
+---
+- name: Update web servers
+  hosts: webservers
+  become: yes
+  tasks:
+    - name: Update package lists and upgrade all packages
+      apt:
+        update_cache: yes
+        upgrade: dist
+      notify:
+        - Reboot system
+
+  handlers:
+    - name: Reboot system
+      ansible.builtin.reboot:
+        reboot_timeout: 180
